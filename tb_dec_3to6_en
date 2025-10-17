@@ -1,0 +1,22 @@
+module tb_dec_3to6_en(
+
+    );
+    
+    reg [2:0] dec_in;
+    reg en;
+    wire [5:0] dec_out;
+    integer i;
+    
+    dec_3to6_en_case U0 (dec_in, en, dec_out);
+    
+    initial begin
+    en=1'b0; dec_in=3'b101;
+    for(i=0;i<8;i=i+1) begin
+    en=1'b1;
+    dec_in=i;
+    #10;
+    end
+    #20 $finish;
+    end
+    
+endmodule
