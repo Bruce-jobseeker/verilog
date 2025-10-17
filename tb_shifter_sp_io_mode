@@ -1,0 +1,39 @@
+module tb_shifter_sp_io_mode(
+
+    );
+    parameter Len=8;
+    reg clk, rstn, pload_en, pout_en, mode, sin;
+    reg [Len-1:0] data_in;
+    wire [Len-1:0] data_io;
+    wire sout;
+    shifter_sp_io_mode U0 (clk, rstn, pload_en, pout_en, mode, sin, sout, data_io);
+    assign data_io=data_in;
+    
+    initial begin
+    clk=1'b0;
+    forever #10 clk=~clk;
+    end
+    
+    initial begin
+    rstn=1'b0; mode=1'b0; pload_en=1'b1; pout_en=1'b1; sin=1'b1; data_in=8'bz;
+    #25 rstn=1'b1; mode=1'b1;
+    #20 sin=1'b0; #20 sin=1'b1;
+    #20 sin=1'b0; #20 sin=1'b1;
+    #20 sin=1'b0; #20 sin=1'b1;
+    #20 sin=1'b1; pout_en=1'b0;
+    #20 sin=1'b0; #20 sin=1'b1;
+    #20 sin=1'b0; #20 sin=1'b1;
+    #20 sin=1'b0; #20 sin=1'b0;
+    #20 sin=1'b1; #20 sin=1'b0;
+    #20 pout_en=1'b1;
+    #20 sin=1'b1; #20 sin=1'b0;
+    #20 mode=1'b0; pload_en=1'b0;
+    data_in=8'b1010_1001;
+    #20 pload_en=1'b1; pout_en=1'b1;
+    mode=1'b1; data_in=8'bz;
+    #20 sin=1'b0; #20 sin=1'b0;
+    #20 sin=1'b0; #20 sin=1'b1;
+    #20 sin=1'b0; #200 $finish;
+    end
+        
+endmodule
