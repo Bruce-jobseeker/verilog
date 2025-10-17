@@ -1,0 +1,9 @@
+module nand4b_bitop(
+    input [3:0] a,
+    input [3:0] b,
+    output [3:0] nand4b
+    );
+    
+    assign nand4b = ~(a&b);
+    
+endmodule
