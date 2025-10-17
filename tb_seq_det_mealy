@@ -1,0 +1,24 @@
+module tb_seq_det_mealy(
+
+    );
+    
+    reg clk, rst, din_bit;
+    wire detect_out;
+    
+    seq_det_mealy U0 (clk, rst, din_bit, detect_out);
+    
+    initial begin
+    clk=1'b0;
+    forever #10 clk=~clk;
+    end
+    
+    initial begin
+    rst=1'b1; din_bit=0;
+    #20 rst=1'b0;
+    #20 din_bit=1;
+    #20 din_bit=1;
+    #20 din_bit=0;
+    #80 $finish;
+    end
+    
+endmodule
