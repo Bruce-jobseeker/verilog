@@ -1,0 +1,23 @@
+module dlatch_4bit_neg(
+    input clock,
+    input set,
+    input rst,
+    input [3:0] din,
+    output [3:0] qout
+    );
+    
+    reg [3:0] qout;
+    
+    always@(clock, set, rst, din) begin
+    
+    if(!rst)
+    qout=4'b0000;
+    
+    if(!set)
+    qout=4'b1111;
+    
+    if(!clock)
+    qout=din;
+    end
+    
+endmodule
