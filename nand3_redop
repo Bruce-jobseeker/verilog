@@ -1,0 +1,8 @@
+module nand3_redop(
+    input [2:0] a,
+    input out_nand3
+    );
+    
+    assign out_nand3 = ~&a;
+    
+endmodule
