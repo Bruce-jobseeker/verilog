@@ -1,0 +1,26 @@
+module pri_enc_4to2_en_case(
+    input [3:0] enc_in,
+    input en,
+    output [1:0] enc_out,
+    output valid
+    );
+    
+    reg [1:0] enc_out;
+    reg valid;
+    
+    always@(enc_in or en) begin
+    if(!en) begin
+    enc_out=2'b00; valid=1'b0;
+    end
+    else begin
+    casex(enc_in)
+    4'b1xxx : begin enc_out=2'b11; valid=1'b1; end
+    4'b01xx : begin  enc_out=2'b10; valid=1'b1; end
+    4'b001x : begin enc_out=2'b01; valid=1'b1; end
+    4'b0001 : begin enc_out=2'b00; valid=1'b1; end
+    4'b0000 : begin enc_out=2'bxx; valid=1'b0; end 
+    endcase
+    end
+    end
+    
+endmodule
