@@ -1,0 +1,25 @@
+module tb_bit_8_up_down_counter(
+
+    );
+    
+    reg clk, rst, mode;
+    wire [7:0] cnt_out;
+    
+    bit_8_up_down_counter U0 (clk, rst, mode, cnt_out);
+    
+    initial begin
+    clk=1'b0;
+    forever #10 clk=~clk;
+    end
+    
+    initial begin
+    rst=1'b0; mode=1'b1;
+    #20 rst=1'b1;
+    #20 rst=1'b0;
+    #80 rst=1'b1; mode=1'b0;
+    #20 rst=1'b0;
+    #80 $finish;
+    end
+    
+    
+endmodule
