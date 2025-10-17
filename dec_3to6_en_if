@@ -1,0 +1,30 @@
+module dec_3to6_en_if(
+    input [2:0] dec_in,
+    input en,
+    output [5:0] dec_out
+    );
+    
+    reg [5:0] dec_out;
+    
+    always@(dec_in or en) begin
+    if(!en)
+    dec_out=6'b000000;
+    else begin
+    if(dec_in==3'b000)
+    dec_out=6'b000001;
+    else if(dec_in==3'b001)
+    dec_out=6'b000010;
+    else if(dec_in==3'b010)
+    dec_out=6'b000100;
+    else if(dec_in==3'b011)
+    dec_out=6'b001000;
+    else if(dec_in==3'b100)
+    dec_out=6'b010000;
+    else if(dec_in==3'b101)
+    dec_out=6'b100000;
+    else
+    dec_out=6'bxxxxxx;
+    end
+    end
+    
+endmodule
