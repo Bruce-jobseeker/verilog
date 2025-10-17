@@ -1,0 +1,25 @@
+module dec_3to6_en_case(
+    input [2:0] dec_in,
+    input en,
+    output [5:0] dec_out
+    );
+    
+    reg [5:0] dec_out;
+    
+    assign en_dec_in={en, dec_in};
+    
+    always@(en_dec_in) begin
+    case(en_dec_in)
+    4'b0xxx : dec_out=6'b000000;
+    4'b1000 : dec_out=6'b000001;
+    4'b1001 : dec_out=6'b000010;
+    4'b1010 : dec_out=6'b000100;
+    4'b1011 : dec_out=6'b001000;
+    4'b1100 : dec_out=6'b010000;
+    4'b1101 : dec_out=6'b100000;
+    4'b1110 : dec_out=6'bxxxxxx;
+    4'b1111 : dec_out=6'bxxxxxx;
+    endcase
+    end
+    
+endmodule
