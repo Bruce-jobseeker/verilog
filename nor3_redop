@@ -1,0 +1,8 @@
+module nor3_redop(
+    input [2:0] a,
+    output out_nor3
+    );
+    
+    assign out_nor3 = ~|a;
+    
+endmodule
