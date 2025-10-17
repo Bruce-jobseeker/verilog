@@ -1,0 +1,25 @@
+module tb_FSM_st1(
+
+    );
+    
+    reg clk, rst, reset, bypass;
+    wire [1:0] out;
+    
+    FSM_reg U0 (clk, rst, reset, bypass, out);
+    
+    initial begin
+    clk=1'b0;
+    forever #10 clk=~clk;
+    end
+    
+    initial begin
+    rst=1'b1; reset=1'b0; bypass=1'b0;
+    #5 rst=1'b0;
+    #5 rst=1'b1;
+    #20;
+    #80 reset=1'b1;
+    #20 reset=1'b0; bypass=1'b1;
+    #20 $finish;
+    end 
+    
+endmodule
