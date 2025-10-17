@@ -1,0 +1,19 @@
+module tb_bcd_fnd(
+
+    );
+    
+    reg [3:0] bcd_in;
+    wire [7:0] fnd_data;
+    integer i;
+    
+    bcd_fnd U0 (bcd_in, fnd_data);
+    
+    initial begin
+    for(i=0; i<10; i=i+1) begin
+    bcd_in=i;
+    #10;
+    end
+    #20 $finish;
+    end
+    
+endmodule
