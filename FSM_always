@@ -1,0 +1,97 @@
+module FSM_always(
+    input clk,
+    input rst,
+    input reset,
+    input bypass,
+    output [1:0] out
+    );
+    
+    parameter ST0=2'b00;
+    parameter ST1=2'b01;
+    parameter ST2=2'b10;
+    parameter ST3=2'b11;
+    
+    reg [1:0] state, next;
+    reg [1:0] out;
+    
+    always@(posedge clk, negedge rst) begin
+    if(!rst)
+    state<=ST0;
+    else
+    state<=next;
+    end
+    
+    always@(state, reset, bypass) begin
+    next=2'bx; out=2'b00;
+    case(state)
+    ST0 : begin
+          out=2'b00;
+          if(reset) next=ST0;
+          else next=ST1;
+          end
+    ST1 : begin
+          out=2'b01;
+          if(bypass) next=ST3;
+          else next=ST2;
+          end
+    ST2 : begin
+          out=2'b10;
+          next=ST3;
+          end
+    ST3 : begin
+          out=2'b11;
+          next=ST0;
+          end
+    endcase
+    end
+    
+    
+endmodulemodule FSM_always(
+    input clk,
+    input rst,
+    input reset,
+    input bypass,
+    output [1:0] out
+    );
+    
+    parameter ST0=2'b00;
+    parameter ST1=2'b01;
+    parameter ST2=2'b10;
+    parameter ST3=2'b11;
+    
+    reg [1:0] state, next;
+    reg [1:0] out;
+    
+    always@(posedge clk, negedge rst) begin
+    if(!rst)
+    state<=ST0;
+    else
+    state<=next;
+    end
+    
+    always@(state, reset, bypass) begin
+    next=2'bx; out=2'b00;
+    case(state)
+    ST0 : begin
+          out=2'b00;
+          if(reset) next=ST0;
+          else next=ST1;
+          end
+    ST1 : begin
+          out=2'b01;
+          if(bypass) next=ST3;
+          else next=ST2;
+          end
+    ST2 : begin
+          out=2'b10;
+          next=ST3;
+          end
+    ST3 : begin
+          out=2'b11;
+          next=ST0;
+          end
+    endcase
+    end
+    
+    
+endmodule
