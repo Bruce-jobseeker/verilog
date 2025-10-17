@@ -1,0 +1,12 @@
+module data_bus_mux(
+    input [7:0] data_a,
+    input [7:0] data_b,
+    input en_a,
+    input en_b,
+    output [7:0] bus_data
+    );
+    
+    assign bus_data= en_a ? data_a : 
+                     en_b ? data_b : 8'hzz;
+    
+endmodule
