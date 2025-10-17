@@ -1,0 +1,8 @@
+module nand4b_gp(
+    input [3:0] a,
+    input [3:0] b,
+    output [3:0] nand4b
+    );
+    
+    nand U0 [3:0] (nand4b, a, b);
+endmodule
