@@ -1,0 +1,8 @@
+module nand3_gp(
+    input [2:0] a,
+    output out_nand3
+    );
+    
+    nand (out_nand3, a[2], a[1], a[0]);
+    
+endmodule
