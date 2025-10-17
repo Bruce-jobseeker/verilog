@@ -1,0 +1,21 @@
+module tb_data_bus_mux(
+
+    );
+    
+    reg [7:0] data_a, data_b;
+    reg en_a, en_b;
+    wire [7:0] bus_data;
+    
+    data_bus_mux U0 (data_a, data_b, en_a, en_b, bus_data);
+    
+    initial begin
+    data_a=8'b1100_0011; data_b=8'b0011_1100; en_a=1'b1; en_b=1'b0;
+    #10 en_a=1'b0; en_b=1'b1;
+    #10 en_a=1'b1; en_b=1'b0;
+    #10 en_a=1'b0; en_b=1'b1;
+    #10 en_a=1'b1; en_b=1'b1;
+    #10 en_a=1'b0; en_b=1'b0;
+    #20 $finish;
+    end
+    
+endmodule
