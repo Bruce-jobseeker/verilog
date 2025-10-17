@@ -1,0 +1,25 @@
+module tb_shift_reg_for(
+
+    );
+    
+    reg clk, rst, s_in;
+    reg[7:0] q;
+    wire s_out;
+    
+    shift_reg_for U0 (clk, rst, s_in, s_out);
+    
+    initial begin
+    clk = 1'b0;
+    forever #10 clk=~clk;
+    end
+    
+    initial begin
+    q=8'b1100_0011; rst=1'b0; s_in=1'b1;
+    #80 rst=1'b1;
+    #10 rst=1'b0;
+    #10;
+    #80 s_in=1'b0;
+    #200; $finish;
+    end
+    
+endmodule
