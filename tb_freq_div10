@@ -1,0 +1,21 @@
+module tb_freq_div10(
+
+    );
+    
+    reg mclk, rst;
+    wire clk_div;
+
+    freq_div10 U0 (mclk, rst, clk_div);
+
+    initial begin
+    mclk=1'b0;
+    forever #10 mclk=~mclk;
+    end
+    
+    initial begin
+    rst=1'b1;
+    #10 rst=1'b0;
+    #200 $finish;
+    end
+    
+endmodule
