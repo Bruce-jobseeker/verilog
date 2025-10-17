@@ -1,0 +1,15 @@
+module nand3_if(
+    input [2:0] a,
+    output out_nand3
+    );
+    
+    reg out_nand3;
+    
+    always@(a) begin
+    if(a==3'b111)
+    out_nand3=1'b0;
+    else
+    out_nand3=1'b1;
+    end
+    
+endmodule
