@@ -1,0 +1,23 @@
+module bcd_fnd(
+    input [3:0] bcd_in,
+    output [7:0] fnd_data
+    );
+    
+    reg [7:0] fnd_data;
+    
+    always @(bcd_in) begin
+    case(bcd_in)
+    4'h0 : fnd_data = 8'b0011_1111;
+    4'h1 : fnd_data = 8'b0000_0110;
+    4'h2 : fnd_data = 8'b0101_1011;
+    4'h3 : fnd_data = 8'b0100_1111;
+    4'h4 : fnd_data = 8'b0110_0110;
+    4'h5 : fnd_data = 8'b0110_1101;
+    4'h6 : fnd_data = 8'b0111_1101;
+    4'h7 : fnd_data = 8'b0000_0111;
+    4'h8 : fnd_data = 8'b0111_1111;
+    4'h9 : fnd_data = 8'b0110_1111;
+    endcase
+    end 
+    
+endmodule
