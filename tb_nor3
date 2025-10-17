@@ -1,0 +1,19 @@
+module tb_nor3(
+
+    );
+    
+    reg [2:0] a;
+    integer i;
+    
+    nor3_if U0 (a, out_nor3);
+    
+    initial begin
+    for(i=0 ; i<=7; i=i+1) begin
+    a=i;
+    #10;
+    end
+    #20 $finish;
+    end
+    
+    
+endmodule
