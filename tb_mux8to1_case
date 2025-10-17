@@ -1,0 +1,22 @@
+module tb_mux8to1_case(
+
+    );
+    
+    reg [7:0] in_word;
+    reg [2:0] sel;
+    wire out_bit;
+    
+    mux8to1_case U0 (in_word, sel, out_bit);
+    
+    integer i;
+    
+    initial begin
+    in_word = 8'b1100_0101;
+    for(i=0; i<8; i=i+1) begin
+    sel=i;
+    #10;
+    end
+    #20 $finish;
+    end    
+    
+endmodule
