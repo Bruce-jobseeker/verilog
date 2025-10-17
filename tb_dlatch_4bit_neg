@@ -1,0 +1,23 @@
+module tb_dlatch_4bit_neg(
+
+    );
+    
+    reg clock, set, rst;
+    reg [3:0] din;
+    wire [3:0] qout;
+    
+    dlatch_4bit_neg U0 (clock, set, rst, din, qout);
+    
+    initial begin;
+    clock=1'b0;
+    forever #10 clock=~clock;
+    end
+    
+    initial begin
+    set=1'b1; rst=1'b0; din=4'b1010;
+    #10 set=1'b0; rst=1'b1;
+    #10 set=1'b1; rst=1'b1;
+    #40 $finish;
+    end
+    
+endmodule
