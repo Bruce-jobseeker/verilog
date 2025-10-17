@@ -1,0 +1,16 @@
+module nor3_if(
+    input [2:0] a,
+    output out_nor3
+    );
+    
+    reg [2:0] out_nor3;
+    
+    always@(a) begin
+    if(a==3'b000)
+    out_nor3=1'b1;
+    else
+    out_nor3=1'b0;
+    end
+    
+    
+endmodule
