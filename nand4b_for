@@ -1,0 +1,16 @@
+module nand4b_for(
+    input [3:0] a,
+    input [3:0] b,
+    output [3:0] nand4b
+    );
+    
+    reg [3:0] nand4b; 
+    integer i;
+    
+    always@ (a or b) begin
+    for(i=0; i<4; i=i+1) begin
+    nand4b[i]=~(a[i]&b[i]);
+    end
+    end
+    
+endmodule
