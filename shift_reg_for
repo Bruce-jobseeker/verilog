@@ -1,0 +1,23 @@
+module shift_reg_for(
+    input clk,
+    input rst,
+    input s_in,
+    output s_out
+    );
+    
+    reg [7:0] q;
+    integer i;
+    assign s_out = q[7];
+    
+    always@(posedge clk) begin
+    if(rst)
+    q<=2'h00;
+    else begin
+    for(i=0; i<7; i=i+1) begin
+    q[i+1]<=q[i];
+    end
+    q[0]<=s_in;
+    end
+    end
+    
+endmodule
