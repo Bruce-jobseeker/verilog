@@ -1,0 +1,23 @@
+module enc_4to2_en_case(
+    input [3:0] enc_in,
+    input en,
+    output [1:0] enc_out
+    );
+    
+    reg [1:0] enc_out;
+    
+    always@ (enc_in or en) begin
+    if(en)
+    enc_out=2'b00;
+    else begin
+    case(enc_in)
+    4'b0001 : enc_out = 2'b00;
+    4'b0010 : enc_out = 2'b01;
+    4'b0100 : enc_out = 2'b10;
+    4'b1000 : enc_out = 2'b11;
+    default : enc_out = 2'bxx;
+    endcase
+    end
+    end
+    
+endmodule
