@@ -1,0 +1,32 @@
+module pri_enc_4to2_en_for(
+    input [3:0] enc_in,
+    input en,
+    output [1:0] enc_out,
+    output valid
+    );
+    
+    reg [1:0] enc_out;
+    reg valid;
+    integer i;
+    
+    always@(enc_in or en) begin
+    if(!en) begin
+    enc_out=2'b00; valid=1'b0;
+    end
+    else begin
+    enc_out=2'bxx;
+    valid=1'b0;
+    begin : Loop
+    for(i=3; i>=0; i=i-1) begin
+    if(enc_in[i])begin
+    enc_out=i;
+    valid=1'b1;
+    disable Loop;
+    end
+    end    
+    
+    end
+    end
+    end
+    
+endmodule
