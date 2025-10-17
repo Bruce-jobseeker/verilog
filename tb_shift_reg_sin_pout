@@ -1,0 +1,23 @@
+module tb_shift_reg_sin_pout(
+    
+    );
+    
+    reg clk, rst, s_in;
+    wire [7:0] p_out;
+    
+    shift_reg_sin_pout U0 (clk, rst, s_in, p_out);
+    
+    initial begin
+    clk=1'b0;
+    forever #10 clk=~clk;
+    end
+    
+    initial begin
+    rst=1'b0; s_in=1;
+    #40 s_in=0;
+    #40 s_in=1;
+    #40 s_in=0;
+    #200 $finish;
+    end
+       
+endmodule
