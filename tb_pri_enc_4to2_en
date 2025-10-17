@@ -1,0 +1,22 @@
+module tb_pri_enc_4to2_en(
+
+    );
+    
+    reg [3:0] enc_in;
+    reg en;
+    wire [1:0] enc_out;
+    wire valid;
+    
+    pri_enc_4to2_en_for U0 (enc_in, en, enc_out, valid);
+    
+    initial begin
+    en=0; enc_in=4'b1100;
+    #10 en=1; enc_in=4'b1111;
+    #10 enc_in=4'b0111;
+    #10 enc_in=4'b0011;
+    #10 enc_in=4'b0001;
+    #10 enc_in=4'b0000;
+    #20 $finish;
+    end
+    
+endmodule
