@@ -1,0 +1,35 @@
+module shifter_sp_io_mode(
+    input clk,
+    input rstn,
+    input pload_en,
+    input pout_en,
+    input mode,
+    input sin,
+    output sout,
+    inout [Len-1:0] data_io
+    );
+    
+    parameter Len=8;
+    reg [Len-1:0] shift_reg;
+    
+    assign data_io=(!pout_en) ? shift_reg : {Len{1'bz}};
+    assign sout=shift_reg[7];
+    
+    always@(posedge clk) begin
+    if(!rstn)
+    shift_reg<={Len{1'b0}};
+    else begin
+    if(!pload_en)
+    shift_reg<=data_io;
+    if(mode) begin
+    shift_reg<=shift_reg<<1;
+    shift_reg[0]<=sin;
+    end
+    else if(!mode) begin
+    shift_reg<=shift_reg>>1;
+    shift_reg[7]<=sin;
+    end
+    end
+    end
+    
+endmodule
