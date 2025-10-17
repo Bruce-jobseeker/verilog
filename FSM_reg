@@ -1,0 +1,50 @@
+module FSM_reg(
+    input clk,
+    input rst,
+    input reset,
+    input bypass,
+    output [1:0] out
+    );
+    
+    parameter ST0=2'b00;
+    parameter ST1=2'b01;
+    parameter ST2=2'b10;
+    parameter ST3=2'b11;
+    
+    reg [1:0] state, next;
+    reg [1:0] out;
+    
+    always@(posedge clk, negedge rst) begin
+    if(!rst)
+    state<=ST0;
+    else
+    state<=next;
+    end
+    
+    always@(state, reset, bypass) begin
+    next=2'bx;
+    case(state)
+    ST0 : if(reset) next=ST0;
+          else next=ST1;
+    ST1 : if(bypass) next=ST3;
+          else next=ST2;
+    ST2 : next=ST3;
+    ST3 : next=ST0;
+    endcase
+    end
+    
+    always@(posedge clk, negedge rst) begin
+    if(!rst)
+    out<=2'b00;
+    else begin
+    out<=2'b00;
+    case(next)
+    ST1 : out<=2'b00;
+    ST2 : out<=2'b01;
+    ST3 : out<=2'b10;
+    ST0 : out<=2'b11;
+    endcase
+    end
+    end
+    
+endmodule
