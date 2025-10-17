@@ -1,0 +1,8 @@
+module nor3_gp(
+    input [2:0] a,
+    output out_nor3
+    );
+    
+    nor (out_nor3, a[2], a[1], a[0]);
+    
+endmodule
