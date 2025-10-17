@@ -1,0 +1,18 @@
+module tb_nand3(
+
+    );
+    
+    reg [2:0] a;
+    integer i;
+    
+    nand3_if U0 (a, out_nand3_if);
+    
+    initial begin
+    for(i=0 ; i<=7 ; i=i+1)begin
+    a=i;
+    #10;
+    end
+    #20 $finish;
+    end
+    
+endmodule
