@@ -1,0 +1,12 @@
+module comb_gate(
+    input a,
+    input b,
+    input c,
+    input d,
+    input e,
+    output F
+    );
+    
+    assign F = ~(a&(b|c|d)&e);
+    
+endmodule
