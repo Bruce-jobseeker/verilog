@@ -1,0 +1,18 @@
+module LFSR(
+    input clk,
+    input rst,
+    output sout
+    );
+    
+    reg q8, q7, q6, q5, q4, q3, q2, q1;
+    assign sout=q8;
+    
+    always@(posedge clk, negedge rst) begin
+    if(!rst)
+    {q8, q7, q6, q5, q4, q3, q2, q1}<=8'b11111111;
+    else begin
+    {q8, q7, q6, q5, q4, q3, q2, q1}<={q7, q6, q5, q4^q8, q3^q8, q2^q8, q1, q8};
+    end
+    end
+    
+endmodule
