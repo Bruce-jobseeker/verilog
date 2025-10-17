@@ -1,0 +1,51 @@
+module FSM_bit_pattern(
+    input clk,
+    input rst,
+    input din_bit,
+    output detect_out
+    );
+    
+    parameter start=3'b000;
+    parameter st1=3'b001;
+    parameter st2=3'b010;
+    parameter st3=3'b011;
+    parameter st4=3'b100;
+    
+    reg [2:0] state, next;
+    reg detect_out;
+    
+    always@(posedge clk, posedge rst) begin
+    if(rst)
+    state <= start;
+    else state <= next;
+    end
+    
+    always@(state, din_bit) begin
+    next=3'bx; detect_out=1'b0;
+    case(state)
+    start : if(din_bit) next=start;
+            else next=st1;
+    st1 :   begin
+            detect_out=1'b0;
+            if(din_bit) next=st2;
+            else next=st1;
+            end
+    st2 : begin
+          detect_out=1'b0;
+          if(din_bit) next=st3;
+          else next=st1;
+          end
+    st3 : begin
+          detect_out=1'b0;
+          if(din_bit) next=start;
+          else next=st4;
+          end
+    st4 : begin
+          detect_out=1'b1;
+          if(din_bit) next=st2;
+          else next=st1;
+          end
+          endcase
+          end
+    
+endmodule
